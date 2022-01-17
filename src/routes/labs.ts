@@ -12,7 +12,7 @@ const deleteLabController = new DeleteLabController();
 
 export const labs = Router();
 
-labs.get( '/', allLabController.handler );
+labs.get( '/labs', allLabController.handler );
 
 labs.post( '/add', newLabController.handler );
 

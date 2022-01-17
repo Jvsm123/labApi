@@ -8,7 +8,9 @@ export class DeleteLabController
 	{
 		const deleteLabService = new DeleteLabService();
 
-		const result = await deleteLabService.execute();
+		const ID = req.params.nome
+
+		const result = await deleteLabService.execute( ID );
 
 		return res.json( result );
 	};

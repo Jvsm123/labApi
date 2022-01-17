@@ -17,12 +17,11 @@ export class EditExamesController
 		if( !body.nome && !body.tipo && !body.status )
 			throw new Error("Não há o que alterar!");
 
-		const result = await editExamesService
-			.execute(
-			{
-				ID: querys.nome,
-				newData: body
-			});
+		const result = await editExamesService.execute(
+		{
+			ID: querys.nome,
+			newData: body
+		});
 
 		return res.json( result );
 	};

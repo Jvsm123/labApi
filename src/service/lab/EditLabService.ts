@@ -15,10 +15,10 @@ export class EditLabService
 		if( oldLab )
 		{
 			newData.nome && ( oldLab.nome = newData.nome );
-			newData.status && ( oldLab.status = newData.status );
 			newData.endereco && ( oldLab.endereco = newData.endereco );
+			newData.status && ( oldLab.status = newData.status );
 		}
-		else return "Exame não encontrado!";
+		else return "Laboratório não encontrado!";
 
 		await labRepo.save( oldLab );
 
