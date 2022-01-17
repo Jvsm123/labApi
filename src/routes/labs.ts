@@ -16,6 +16,6 @@ labs.get( '/', allLabController.handler );
 
 labs.post( '/add', newLabController.handler );
 
-labs.patch( '/edit/:id', editLabController.handler );
+labs.patch( '/edit/:nome', editLabController.handler );
 
-labs.delete( '/delete/:id', deleteLabController.handler );
+labs.delete( '/delete/:nome', deleteLabController.handler );

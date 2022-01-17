@@ -12,11 +12,7 @@ export class NewLabService
 
 		if( !data.nome || !data.endereco ) throw new Error("Faltam dados!");
 
-		const alreadyCreated = await labRepo.findOne(
-		{
-			nome: data.nome,
-			endereco: data.endereco
-		});
+		const alreadyCreated = await labRepo.findOne({ nome: data.nome });
 
 		if( alreadyCreated ) throw new Error("Laboratório Já Existe!");
 

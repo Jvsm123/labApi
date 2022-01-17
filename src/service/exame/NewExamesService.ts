@@ -23,8 +23,8 @@ export class NewExamesService
 			status: "Ativo"
 		};
 
-		const result = await examesRepo.save( newExame );
+		await examesRepo.save( newExame );
 
-		return result;
+		return newExame;
 	};
 };
