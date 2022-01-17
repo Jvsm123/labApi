@@ -10,14 +10,24 @@ export class NewLabService
 	{
 		const labRepo = getCustomRepository( LabRepository );
 
-		const alreadyCreated = await labRepo.findOne( data.nome );
+		if( !data.nome || !data.endereco ) throw new Error("Faltam dados!");
 
-		if( alreadyCreated ) throw new Error(" Já Existe! ");
+		const alreadyCreated = await labRepo.findOne(
+		{
+			nome: data.nome,
+			endereco: data.endereco
+		});
 
-		const newLab = labRepo.create( data );
+		if( alreadyCreated ) throw new Error("Laboratório Já Existe!");
+
+		const newLab =
+		{
+			nome: data.nome,
+			endereco: data.endereco,
+		};
 
 		await labRepo.save( newLab );
 
-		return labRepo;
+		return newLab;
 	};
 };

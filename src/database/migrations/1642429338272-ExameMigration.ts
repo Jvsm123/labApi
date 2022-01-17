@@ -24,8 +24,8 @@ export class ExameMigration1642429338272 implements MigrationInterface
 				},
 				{
 					name: "status",
-					type: "boolean",
-					default: true
+					type: "varchar",
+					default: "Ativo"
 				},
 				{
 					name: "created_at",
@@ -35,9 +35,13 @@ export class ExameMigration1642429338272 implements MigrationInterface
 			],
 			foreignKeys:
 			[
-				name: "FKLaboratorio",
-				referenceTableName: "laboratorio" ,
-				onDelete: "SET NULL"
+				{
+					name: "FKLaboratorio",
+					referencedTableName: "laboratorio",
+					referencedColumnNames: ['nome'],
+					columnNames: [],
+					onDelete: "SET NULL"
+				}
 			]
 		}) );
 	};

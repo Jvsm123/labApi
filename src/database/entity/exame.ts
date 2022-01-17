@@ -15,7 +15,7 @@ export class Exame
 	tipo: string;
 
 	@Column()
-	status: boolean;
+	status: string;
 
 	@CreateDateColumn()
 	created_at: Date;

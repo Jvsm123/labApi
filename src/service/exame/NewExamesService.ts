@@ -10,7 +10,9 @@ export class NewExamesService
 	{
 		const examesRepo = getCustomRepository( ExameRepository );
 
-		const alreadyCreated = await examesRepo.findOne( data.nome );
+		if( !data.nome || !data.tipo ) throw new Error("Faltam dados!");
+
+		const alreadyCreated = await examesRepo.findOne({ nome: data.nome });
 
 		if( alreadyCreated ) throw new Error("Exame já criado!");
 
@@ -18,11 +20,10 @@ export class NewExamesService
 		{
 			nome: data.nome,
 			tipo: data.tipo,
-			status: "Ativo"
 		};
 
-		await examesRepo.save( newExame );
+		const result = await examesRepo.save( newExame );
 
-		return newExame;
+		return result;
 	};
 };

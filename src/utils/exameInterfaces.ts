@@ -2,6 +2,7 @@ export interface INewData
 {
 	nome: string;
 	tipo: string;
+
 };
 
 export interface IDeleteData

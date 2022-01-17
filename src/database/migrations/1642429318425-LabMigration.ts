@@ -24,21 +24,24 @@ export class LabMigration1642429318425 implements MigrationInterface
 				},
 				{
 					name: "status",
-					type: "boolean",
-					default: true
+					type: "varchar",
+					default: "Ativo"
 				},
 				{
 					name: "created_at",
 					type: "timestamp",
 					default: "now()"
-				},
+				}
 			],
 			foreignKeys:
 			[
-				name: "FKExames",
-				referencedTableName: "exame",
-				referencedColumnNames: ['nome'],
-				onDelete: "SET NULL"
+				{
+					name: "FKExames",
+					referencedTableName: "exame",
+					referencedColumnNames: ['nome'],
+					columnNames: [],
+					onDelete: "SET NULL"
+				}
 			]
 		}));
 	};
