@@ -7,8 +7,10 @@ export class DeleteExamesController
 	async handler( req: Request, res: Response )
 	{
 		const deleteExamesService = new DeleteExamesService();
+
+		const querys = req.params;
 		
-		const result = await deleteExamesService.execute();
+		const result = await deleteExamesService.execute( querys );
 
 		return res.json( result );
 	};

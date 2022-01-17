@@ -1,7 +1,15 @@
+import { getCustomRepository } from 'typeorm'
+
+import { ExameRepository } from '../../repositories/examesRepository';
+
 export class AllExamesService
 {
-	async execute()
+	async execute(): Promise<any>
 	{
-		return "Todos os Exames!";
+		const exameRepo = getCustomRepository( ExameRepository );
+
+		const exames = await exameRepo.find();
+
+		return exames;
 	};
 };

@@ -1,6 +1,6 @@
 import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, OneToMany } from 'typeorm';
 
-// import { Exame } from './exame';
+import { Exame } from './exame';
 
 @Entity("laboratorio")
 export class Laboratorio
@@ -20,6 +20,6 @@ export class Laboratorio
 	@CreateDateColumn()
 	created_at: Date;
 
-	// @OneToMany( () => Exame, exame => exame.laboratorio )
-	// exames: Exame[];
+	@OneToMany( () => Exame, exame => exame.laboratorio )
+	exames: Exame[];
 };

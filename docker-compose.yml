@@ -1,17 +1,22 @@
 version: '3'
 
 services:
-  node:
+  api:
     container_name: "nodejs_apilab"
     build: .
+    command: "yarn run dev"
+    ports:
+      - "8080:8080"
+    env_file:
+      - .env.development
     volumes:
       - ./:/apiLab
     links:
-      - postgresql
-    ports:
-      - "8080:8080"
-    command: "yarn run dev"
-  postgresql:
+      - database
+    environment:
+      DATABASE_URL: postgres://postgres:api@database:5432/apiLab
+
+  database:
     container_name: "postgresql_apilab"
     image: postgres
     ports:

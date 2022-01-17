@@ -20,6 +20,6 @@ export class Exame
 	@CreateDateColumn()
 	created_at: Date;
 
-	// @ManyToOne( () => Laboratorio, lab => lab.exames )
-	// laboratorio: Laboratorio;
+	@ManyToOne( () => Laboratorio, lab => lab.exames )
+	laboratorio: Laboratorio;
 };

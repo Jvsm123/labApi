@@ -1,3 +1,9 @@
+import dotenv from 'dotenv';
+
+dotenv.config();
+
+process.env.TYPEORM_URL = process.env['DATABASE_URL'];
+
 import Express from 'express';
 
 import "express-async-errors"; 

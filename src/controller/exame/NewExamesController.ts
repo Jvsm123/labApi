@@ -8,7 +8,7 @@ export class NewExamesController
 	{
 		const newExamesService = new NewExamesService();
 
-		const result = await newExamesService.execute();
+		const result = await newExamesService.execute( req.body );
 
 		return res.json( result );
 	};

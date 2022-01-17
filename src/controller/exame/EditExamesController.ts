@@ -6,10 +6,12 @@ export class EditExamesController
 {
 	async handler( req: Request, res: Response )
 	{
-		const editExamesController = new EditExamesService();
+		const editExamesService = new EditExamesService();
 
-		const result = await editExamesController.execute();
+		const querys = req.params;
 
-		return res.json( result );
+		// result = await editExamesService.execute(  );
+
+		// return res.json( result );
 	};
 };

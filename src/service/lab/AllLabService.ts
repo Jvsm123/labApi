@@ -1,7 +1,15 @@
+import { getCustomRepository } from 'typeorm';
+
+import { LabRepository }  from '../../repositories/labRepository';
+
 export class AllLabService
 {
-	async execute()
+	async execute(): Promise<any>
 	{
-		return "Todos os labs";
+		const labRepo = getCustomRepository( LabRepository );
+
+		const allLab = labRepo.find();
+
+		return allLab;
 	};
 };

@@ -2,7 +2,7 @@ import { INewData } from "../../utils/labInterfaces";
 
 import { getCustomRepository } from 'typeorm';
 
-import { LabRepository } from '../../repositories/labsRepository';
+import { LabRepository } from '../../repositories/labRepository';
 
 export class NewLabService
 {
