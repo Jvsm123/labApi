@@ -10,20 +10,18 @@ export class EditExamesService
 	{
 		const examesRepo = getCustomRepository( ExameRepository );
 
-		if( !ID ) throw new Error("Não há um identificador valido!");
+		let oldExame = await examesRepo.findOne({ nome: ID });
 
-		if( !newData || !newData.hasOwnProperty ) throw new Error("Não há novos dados!");
+		if( oldExame )
+		{
+			newData.nome && ( oldExame.nome = newData.nome );
+			newData.tipo && ( oldExame.tipo = newData.tipo );
+			newData.status && ( oldExame.status = newData.status );
+		}
+		else return "Exame não econtrado!";
 
-		let oldData = await examesRepo.findOne( ID );
+		await examesRepo.save( oldExame );
 
-		// if( oldData )
-		// {
-		//     oldData.nome = newData.nome;
-		//     oldData.tipo = newData.tipo;
-		//     oldData.status = newData.status;
-		// }
-		// else return "Exame não econtrado!";
-
-		return "Exame Editado!";
+		return oldExame;
 	};
 };

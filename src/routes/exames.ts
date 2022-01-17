@@ -16,6 +16,6 @@ exame.get( '/exames', allExamesController.handler );
 
 exame.post( '/add', newExamesController.handler );
 
-exame.patch( '/edit/:id', editExamesController.handler );
+exame.patch( '/edit/:nome', editExamesController.handler );
 
-exame.delete( '/delete/:id', deleteExamesController.handler );
+exame.delete( '/delete/:nome', deleteExamesController.handler );

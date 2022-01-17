@@ -10,8 +10,20 @@ export class EditExamesController
 
 		const querys = req.params;
 
-		// result = await editExamesService.execute(  );
+		const body = req.body;
 
-		// return res.json( result );
+		if( !querys ) throw new Error("Faltam informações!");
+
+		if( !body.nome && !body.tipo && !body.status )
+			throw new Error("Não há o que alterar!");
+
+		const result = await editExamesService
+			.execute(
+			{
+				ID: querys.nome,
+				newData: body
+			});
+
+		return res.json( result );
 	};
 };

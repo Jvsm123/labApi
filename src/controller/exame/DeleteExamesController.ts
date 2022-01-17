@@ -8,9 +8,9 @@ export class DeleteExamesController
 	{
 		const deleteExamesService = new DeleteExamesService();
 
-		const querys = req.params;
-		
-		const result = await deleteExamesService.execute( querys );
+		const ID = req.params.nome;
+
+		const result = await deleteExamesService.execute( ID );
 
 		return res.json( result );
 	};

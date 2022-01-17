@@ -20,6 +20,7 @@ export class NewExamesService
 		{
 			nome: data.nome,
 			tipo: data.tipo,
+			status: "Ativo"
 		};
 
 		const result = await examesRepo.save( newExame );
