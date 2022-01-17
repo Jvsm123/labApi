@@ -1,0 +1,27 @@
+version: '3'
+
+services:
+  node:
+    container_name: "nodejs_apilab"
+    build: .
+    volumes:
+      - ./:/apiLab
+    links:
+      - postgresql
+    ports:
+      - "8080:8080"
+    command: "yarn run dev"
+  postgresql:
+    container_name: "postgresql_apilab"
+    image: postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - database-data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: api
+      POSTGRES_DB: apiLab
+
+volumes:
+  database-data: {}
