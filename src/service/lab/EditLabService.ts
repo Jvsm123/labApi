@@ -1,4 +1,4 @@
-import { IDeleteData } from '../../utils/labInterfaces';
+import { IUpdateData } from '../../utils/labInterfaces';
 
 import { getCustomRepository } from 'typeorm';
 
@@ -6,7 +6,7 @@ import { LabRepository } from '../../repositories/labRepository';
 
 export class EditLabService
 {
-	async execute( { ID, newData }: IDeleteData ): Promise<any>
+	async execute( { ID, newData }: IUpdateData ): Promise<any>
 	{
 		const labRepo = getCustomRepository( LabRepository );
 

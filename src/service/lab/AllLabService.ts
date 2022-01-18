@@ -8,7 +8,7 @@ export class AllLabService
 	{
 		const labRepo = getCustomRepository( LabRepository );
 
-		const allLab = labRepo.find();
+		const allLab = labRepo.find({ relations: ["exames"] });
 
 		return allLab;
 	};

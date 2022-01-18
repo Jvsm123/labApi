@@ -4,8 +4,13 @@ export interface INewData
 	tipo: string;
 };
 
-export interface IDeleteData
+export interface IUpdateData
 {
 	ID: string;
-	newData: { nome: string; tipo: string; status: string; };
+	newData:
+	{
+		nome: string;
+		tipo: string;
+		status: string;
+	};
 };

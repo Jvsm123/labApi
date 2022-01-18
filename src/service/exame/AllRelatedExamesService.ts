@@ -8,13 +8,12 @@ export class AllRelatedExamesService
 	{
 		const exameRepo = getCustomRepository( ExameRepository );
 
-		const exame = await exameRepo.findOne( id: ID );
+		const related = await exameRepo.find(
+		{ 
+			where: { nome: ID },
+			relations: ["laboratorio"]
+		});
 
-		const related = await exameRepo.find({ relations: ["laboratorio"] });
-
-		console.log( "Relacionados: ", related );
-		console.log( "Exame: ", exame );
-
-		return exames;
+		return related;
 	};
 };

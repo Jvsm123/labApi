@@ -8,18 +8,18 @@ export class EditExamesController
 	{
 		const editExamesService = new EditExamesService();
 
-		const querys = req.params;
+		const nomeParams = req.params.nome;
 
 		const body = req.body;
 
-		if( !querys ) throw new Error("Faltam informações!");
+		if( !nomeParams ) throw new Error("Faltam informações!");
 
 		if( !body.nome && !body.tipo && !body.status )
 			throw new Error("Não há o que alterar!");
 
 		const result = await editExamesService.execute(
 		{
-			ID: querys.nome,
+			ID: nomeParams,
 			newData: body
 		});
 

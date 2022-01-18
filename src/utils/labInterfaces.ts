@@ -5,8 +5,19 @@ export interface INewData
 	status?: string;
 };
 
-export interface IDeleteData
+export interface IUpdateData
 {
 	ID: string;
-	newData: { nome: string; endereco: string; status: string };
-}
+	newData:
+	{
+		nome?: string;
+		endereco?: string;
+		status?: string;
+	};
+};
+
+export interface INewLabExames
+{
+	ID: string;
+	exames: [string];
+};

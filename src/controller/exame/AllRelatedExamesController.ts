@@ -8,7 +8,11 @@ export class AllRelatedExamesController
 	{
 		const allRelatedExamesService = new AllRelatedExamesService();
 
-		const result = await allRelatedExamesService.execute();
+		const nomeParams = req.params.nome
+
+		if( !nomeParams ) throw new Error("Faltam informações!");
+
+		const result = await allRelatedExamesService.execute( nomeParams );
 	
 		return res.json( result );
 	};

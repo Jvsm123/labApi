@@ -22,4 +22,4 @@ exame.patch( '/edit/:nome', editExamesController.handler );
 
 exame.delete( '/delete/:nome', deleteExamesController.handler );
 
-exame.get( '/exames/:related', allRelatedExamesController.handler );
+exame.get( '/exames/:nome/related', allRelatedExamesController.handler );

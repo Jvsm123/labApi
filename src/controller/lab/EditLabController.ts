@@ -8,18 +8,18 @@ export class EditLabController
 	{
 		const editLabService = new EditLabService();
 
-		const querys = req.params;
+		const params = req.params;
 
 		const body = req.body;
 
-		if( !querys ) throw new Error("Faltam informações");
+		if( !params ) throw new Error("Faltam informações");
 
 		if( !body.nome && !body.endereco && !body.status )
 			throw new Error("Não há o que alterar!");
 
 		const result = await editLabService.execute(
 		{
-			ID: querys.nome,
+			ID: params.nome,
 			newData: body
 		});
 

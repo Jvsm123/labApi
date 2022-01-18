@@ -1,4 +1,4 @@
-import { IDeleteData } from '../../utils/exameInterfaces';
+import { IUpdateData } from '../../utils/exameInterfaces';
 
 import { getCustomRepository } from 'typeorm';
 
@@ -6,7 +6,7 @@ import { ExameRepository } from '../../repositories/examesRepository';
 
 export class EditExamesService
 {
-	async execute( { ID, newData }: IDeleteData ): Promise<any>
+	async execute( { ID, newData }: IUpdateData ): Promise<any>
 	{
 		const examesRepo = getCustomRepository( ExameRepository );
 
