@@ -1,6 +1,6 @@
-import { deepEqual, ok } from 'assert';
-
 import 'mocha';
+
+import { deepEqual, ok } from 'assert';
 
 describe('Suite de teste para exames', () =>
 {

@@ -1,8 +1,8 @@
+import 'mocha';
+
 import { deepEqual, ok } from 'assert';
 
-import 'mocha';
 import { NewLabService } from '../src/service/lab/NewLabService';
-
 
 const LABMOCK =
 {

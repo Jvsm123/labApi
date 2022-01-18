@@ -9,8 +9,8 @@ export interface IUpdateData
 	ID: string;
 	newData:
 	{
-		nome: string;
-		tipo: string;
-		status: string;
+		nome?: string;
+		tipo?: string;
+		status?: string;
 	};
 };
