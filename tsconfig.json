@@ -29,5 +29,5 @@
 		/* Others */
 		"typeRoots": ["./src/@types", "./test/**.spec.ts"]
 	},
-	"exclude": ["**/node_modules"],
+	"exclude": ["**/node_modules"]
 }

@@ -13,6 +13,7 @@ import "reflect-metadata";
 import './database';
 
 import { labs } from './routes/labs';
+
 import { exame } from './routes/exames';
 
 const api = Express();
