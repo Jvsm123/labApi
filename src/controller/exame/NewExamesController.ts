@@ -4,11 +4,11 @@ import { NewExamesService } from '../../service/exame/NewExamesService';
 
 export class NewExamesController
 {
-	async handler( req: Request, res: Response )
+	async handler( req: Request, res: Response ): Promise< Response >
 	{
-		const newExamesService = new NewExamesService();
+		const newExamesService: NewExamesService = new NewExamesService();
 
-		const result = await newExamesService.execute( req.body );
+		const result: Object = await newExamesService.execute( req.body );
 
 		return res.json( result );
 	};

@@ -2,13 +2,20 @@ import { Request, Response } from 'express';
 
 import { NewLabService } from '../../service/lab/NewLabService';
 
+import { IControllerNewBodyData } from '../../utils/labInterfaces';
+
 export class NewLabController
 {
-	async handler( req: Request, res: Response )
+	async handler( req: Request, res: Response ): Promise< Response >
 	{
-		const newLabService = new NewLabService();
+		const newLabService: NewLabService = new NewLabService();
 
-		const result = await newLabService.execute( req.body );
+		const newBody: IControllerNewBodyData = req.body;
+
+		if( !newBody.nome || !newBody.endereco )
+			throw new Error("Faltam dados!");
+
+		const result: Object = await newLabService.execute( newBody );
 
 		return res.json( result );
 	};

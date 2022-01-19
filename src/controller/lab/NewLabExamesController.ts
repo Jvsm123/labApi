@@ -4,18 +4,18 @@ import { NewLabExamesService } from '../../service/lab/NewLabExamesService';
 
 export class NewLabExamesController
 {
-	async handler( req: Request, res: Response ): Promise<any>
+	async handler( req: Request, res: Response ): Promise< Response >
 	{
-		const newLabExamesService = new NewLabExamesService();
+		const newLabExamesService: NewLabExamesService = new NewLabExamesService();
 
-		const nameParams = req.params.nome;
+		const nameParams: string = req.params.nome;
 
-		const bodyExames = req.body;
+		const bodyExames: [string] = req.body;
 
-		if( !nameParams || !bodyExames )
+		if( !nameParams || !bodyExames || bodyExames.length < 1 )
 			throw new Error("Impossível fazer associação, faltam dados!");
 
-		const result = await newLabExamesService
+		const result: Object = await newLabExamesService
 			.execute({ ID: nameParams, exames: bodyExames });
 
 		return res.json( result );

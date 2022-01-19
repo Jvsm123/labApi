@@ -4,15 +4,15 @@ import { AllRelatedExamesService } from '../../service/exame/AllRelatedExamesSer
 
 export class AllRelatedExamesController
 {
-	async handler( req: Request, res: Response ): Promise<any>
+	async handler( req: Request, res: Response ): Promise< Response >
 	{
-		const allRelatedExamesService = new AllRelatedExamesService();
+		const allRelatedExamesService: AllRelatedExamesService = new AllRelatedExamesService();
 
-		const nomeParams = req.params.nome
+		const nomeParams: string = req.params.nome
 
 		if( !nomeParams ) throw new Error("Faltam informações!");
 
-		const result = await allRelatedExamesService.execute( nomeParams );
+		const result: Array<Object> = await allRelatedExamesService.execute( nomeParams );
 	
 		return res.json( result );
 	};

@@ -1,22 +1,24 @@
-import { INewData } from '../../utils/exameInterfaces';
-
 import { getCustomRepository } from 'typeorm';
+
+import { Exame } from '../../database/entity/exame';
+
+import { IServiceNewData } from '../../utils/exameInterfaces';
 
 import { ExameRepository } from '../../repositories/examesRepository';
 
 export class NewExamesService
 {
-	async execute( data: INewData ): Promise<any>
+	async execute( data: IServiceNewData ): Promise<any>
 	{
-		const examesRepo = getCustomRepository( ExameRepository );
+		const examesRepo: ExameRepository = getCustomRepository( ExameRepository );
 
 		if( !data.nome || !data.tipo ) throw new Error("Faltam dados!");
 
-		const alreadyCreated = await examesRepo.findOne({ nome: data.nome });
+		const alreadyCreated: Exame | undefined = await examesRepo.findOne({ nome: data.nome });
 
 		if( alreadyCreated ) throw new Error("Exame já criado!");
 
-		const newExame =
+		const newExame: Object =
 		{
 			nome: data.nome,
 			tipo: data.tipo,

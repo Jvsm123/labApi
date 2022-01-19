@@ -1,14 +1,16 @@
 import { getCustomRepository } from 'typeorm';
 
+import { Exame } from '../../database/entity/exame';
+
 import { ExameRepository } from '../../repositories/examesRepository';
 
 export class AllRelatedExamesService
 {
-	async execute( ID: string ): Promise<any>
+	async execute( ID: string ): Promise< Exame[] >
 	{
-		const exameRepo = getCustomRepository( ExameRepository );
+		const exameRepo: ExameRepository = getCustomRepository( ExameRepository );
 
-		const related = await exameRepo.find(
+		const related: Exame[] = await exameRepo.find(
 		{ 
 			where: { nome: ID },
 			relations: ["laboratorio"]

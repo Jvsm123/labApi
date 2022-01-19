@@ -4,11 +4,11 @@ import { AllLabService } from '../../service/lab/AllLabService';
 
 export class AllLabController
 {
-	async handler( req: Request, res: Response )
+	async handler( req: Request, res: Response ): Promise< Response >
 	{
-		const allLabService = new AllLabService();
+		const allLabService: AllLabService = new AllLabService();
 
-		const result = await allLabService.execute();
+		const result: Array<Object> = await allLabService.execute();
 
 		return res.json( result );
 	};

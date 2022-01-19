@@ -4,13 +4,13 @@ import { DeleteExamesService } from '../../service/exame/DeleteExamesService';
 
 export class DeleteExamesController
 {
-	async handler( req: Request, res: Response )
+	async handler( req: Request, res: Response ): Promise< Response >
 	{
-		const deleteExamesService = new DeleteExamesService();
+		const deleteExamesService: DeleteExamesService = new DeleteExamesService();
 
-		const ID = req.params.nome;
+		const ID: string = req.params.nome;
 
-		const result = await deleteExamesService.execute( ID );
+		const result: string = await deleteExamesService.execute( ID );
 
 		return res.json( result );
 	};

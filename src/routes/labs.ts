@@ -14,12 +14,12 @@ const newLabExamesController = new NewLabExamesController();
 
 export const labs = Router();
 
-labs.get( '/labs', allLabController.handler );
+labs.get( '/all', allLabController.handler );
 
 labs.post( '/add', newLabController.handler );
 
-labs.post( '/add/:nome/exames', newLabExamesController.handler)
+labs.post( '/add/:nome/exames', newLabExamesController.handler );
 
-labs.patch( '/edit/:nome', editLabController.handler );
+labs.patch( '/edit/:nome/:status', editLabController.handler );
 
 labs.delete( '/delete/:nome', deleteLabController.handler );

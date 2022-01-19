@@ -14,12 +14,13 @@ const allRelatedExamesController = new AllRelatedExamesController();
 
 export const exame = Router();
 
-exame.get( '/exames', allExamesController.handler );
+exame.get( '/all', allExamesController.handler );
+
+exame.get( '/all/:nome/related', allRelatedExamesController.handler );
 
 exame.post( '/add', newExamesController.handler );
 
-exame.patch( '/edit/:nome', editExamesController.handler );
+exame.patch( '/edit/:nome/:status', editExamesController.handler );
 
 exame.delete( '/delete/:nome', deleteExamesController.handler );
 
-exame.get( '/exames/:nome/related', allRelatedExamesController.handler );

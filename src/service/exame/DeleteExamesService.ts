@@ -1,14 +1,16 @@
 import { getCustomRepository } from 'typeorm';
 
+import { Exame } from '../../database/entity/exame';
+
 import { ExameRepository } from '../../repositories/examesRepository';
 
 export class DeleteExamesService
 {
-	async execute( ID: string ): Promise<any>
+	async execute( ID: string ): Promise< string >
 	{
-		const examesRepo = getCustomRepository( ExameRepository );
+		const examesRepo: ExameRepository = getCustomRepository( ExameRepository );
 
-		const exame = await examesRepo.findOne({ nome: ID });
+		const exame: Exame | undefined = await examesRepo.findOne({ nome: ID });
 
 		if( exame ) await examesRepo.remove( exame );
 

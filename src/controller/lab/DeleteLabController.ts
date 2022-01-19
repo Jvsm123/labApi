@@ -4,13 +4,13 @@ import { DeleteLabService } from '../../service/lab/DeleteLabService';
 
 export class DeleteLabController
 {
-	async handler( req: Request, res: Response )
+	async handler( req: Request, res: Response ): Promise< Response >
 	{
-		const deleteLabService = new DeleteLabService();
+		const deleteLabService: DeleteLabService = new DeleteLabService();
 
-		const ID = req.params.nome
+		const ID: string = req.params.nome
 
-		const result = await deleteLabService.execute( ID );
+		const result: string = await deleteLabService.execute( ID );
 
 		return res.json( result );
 	};

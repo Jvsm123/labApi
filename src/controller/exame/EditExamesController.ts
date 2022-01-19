@@ -2,25 +2,31 @@ import { Request, Response } from 'express';
 
 import { EditExamesService } from '../../service/exame/EditExamesService';
 
+import { IControllerUpdateDate } from '../../utils/exameInterfaces';
+
 export class EditExamesController
 {
-	async handler( req: Request, res: Response )
+	async handler( req: Request, res: Response ): Promise< Response >
 	{
-		const editExamesService = new EditExamesService();
+		const editExamesService: EditExamesService = new EditExamesService();
 
-		const nomeParams = req.params.nome;
+		const nomeParams: string = req.params.nome;
 
-		const body = req.body;
+		const statusParams: string = req.params.status;
 
-		if( !nomeParams ) throw new Error("Faltam informações!");
+		const editBody: IControllerUpdateDate = req.body;
 
-		if( !body.nome && !body.tipo && !body.status )
+		if( !nomeParams || !statusParams )
+			throw new Error("Faltam informações!");
+
+		if( !editBody.nome && !editBody.tipo )
 			throw new Error("Não há o que alterar!");
 
-		const result = await editExamesService.execute(
+		const result: Object | string = await editExamesService.execute(
 		{
 			ID: nomeParams,
-			newData: body
+			newData: editBody,
+			status: statusParams
 		});
 
 		return res.json( result );

@@ -1,4 +1,4 @@
-import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, ManyToOne } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, ManyToMany } from 'typeorm';
 
 import { Laboratorio } from './laboratorio';
 
@@ -20,6 +20,6 @@ export class Exame
 	@CreateDateColumn()
 	created_at: Date;
 
-	@ManyToOne( () => Laboratorio, lab => lab.exames )
-	laboratorio: Laboratorio;
+	@ManyToMany( () => Laboratorio, lab => lab.exames )
+	laboratorio: Laboratorio[];
 };
