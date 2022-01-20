@@ -4,16 +4,16 @@ ARQUITETURA
 ### Env para o Docker
 
 Veja o arquivo ./env.development na raiz do projeto
-|
-|	NODE_ENV: Define qual é o ambiente local ( dev por padrão )
-|	TYPEORM_CONNECTION: Define qual é o banco de dados a ser usado
-|	TYPEORM_URL: String da conexão
-|	TYPEORM_SYNCHRONIZE: sincroniza nossas entities com o banco, *fazendo desnecessário migrations em ambiente DEV apenas!*
-|	TYPEORM_LOGGING: Diz se o typeorm precisa mandar logs de cada transaction
-|	TYPEORM_ENTITIES: Localização de todos os arquivos de entities
-|	TYPEORM_MIGRATIONS: Localização de todos os arquivos de migrations
-|	TYPEORM_ENTITIES_DIR: Mostra onde procurar por entities
-|	TYPEORM_MIGRATIONS_DIR: Mostra onde  procurar por migrations
+
+	NODE_ENV: Define qual é o ambiente local ( dev por padrão )
+	TYPEORM_CONNECTION: Define qual é o banco de dados a ser usado
+	TYPEORM_URL: String da conexão
+	TYPEORM_SYNCHRONIZE: sincroniza nossas entities com o banco, *fazendo desnecessário migrations em ambiente DEV apenas!*
+	TYPEORM_LOGGING: Diz se o typeorm precisa mandar logs de cada transaction
+	TYPEORM_ENTITIES: Localização de todos os arquivos de entities
+	TYPEORM_MIGRATIONS: Localização de todos os arquivos de migrations
+	TYPEORM_ENTITIES_DIR: Mostra onde procurar por entities
+	TYPEORM_MIGRATIONS_DIR: Mostra onde  procurar por migrations
 
 ### Scripts do package.json
 
@@ -29,7 +29,6 @@ Veja o arquivo ./env.development na raiz do projeto
 	* controllers: Camada responsável pelo tratamento das informações recebidas do endpoint.
     * database
         * entity: entidades do banco de dados.
-        * migrations: instruções para gerar tabelas e recursos do banco de dados.
 		* index: Arquivo responsável por fazer a conexão com o postgresql.
    * repositories: camada responsável por acesso ao banco, nenhum lógica de negocio.
    * routes: endpoint com as routes do enpoint especificas do modulo.
