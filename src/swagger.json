@@ -1,0 +1,320 @@
+{
+	"swagger": "2.0",
+	"info":
+	{
+		"version": "1.0",
+		"title": "Api Lab",
+		"contact":
+		{
+			"name": "Jvsm123",
+			"email": "Jvsm123@outlook.com"
+		}
+	},
+	"host": "localhost:8080",
+	"basePath": "",
+	"tags":
+	[
+		{
+			"nome": "API LAB",
+			"description": "API Para Busca De Exames / Laboratórios"
+		}
+	],
+	"schemes": ["http"],
+	"consumes": ["application/json"],
+	"produces": ["application/json"],
+	"paths":
+	{
+		"/exame/all":
+		{
+			"get": {
+				"tags": ["Exame"],
+				"summary": "Todos os exames",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"schema": {
+							"$ref": "#/definitions/Exame"
+						}
+					}
+				}
+			}
+		},
+		"/exame/all/{nome}/related": {
+			"get": {
+				"tags": ["Exame"],
+				"summary": "Todos os exames relacionados",
+				"parameters": [{
+					"name": "nome",
+					"in": "path",
+					"description": "Nome do exame",
+					"required": true,
+					"schema":{
+						"$ref": "#/definitions/Nome"
+					}
+				}],
+				"responses": {
+					"200": {
+						"description": "Ok"
+					}
+				}
+			}
+		},
+		"/exame/add": {
+			"post": {
+				"tags": ["Exame"],
+				"summary": "Adicionar novo Exame",
+				"parameters": [
+					{
+						"name": "nome",
+						"in": "body",
+						"description": "Nome do exame",
+						"required": true,
+						"schema": {
+							"$ref": "#/definitions/Nome"
+						}
+					},
+					{
+						"name": "tipo",
+						"in": "body",
+						"description": "Tipo do exame",
+						"required": true,
+						"schema": {
+							"$ref": "#/definitions/Tipo"
+						}
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "Ok"
+					}
+				}
+			}
+		},
+		"/exame/edit/{nome}/{status}": {
+			"patch": {
+				"tags": ["Exame"],
+				"summary": "Edita um exame",
+				"parameters":[
+					{
+						"name": "nome",
+						"in": "path",
+						"description": "Nome do exame",
+						"required": true,
+						"schema":{
+							"$ref": "#/definitions/Nome"
+						}
+					},
+					{
+						"name": "status",
+						"in": "path",
+						"description": "status do exame",
+						"required": true,
+						"schema":{
+							"$ref": "#/definitions/Status"
+						}
+					},
+					{
+						"name": "nome",
+						"in": "body",
+						"description": "Nome do novo exame",
+						"required": true,
+						"schema": {
+							"$ref": "#/definitions/Nome"
+						}
+					},
+					{
+						"name": "tipo",
+						"in": "body",
+						"description": "Tipo do novo exame",
+						"required": true,
+						"schema": {
+							"$ref": "#/definitions/Tipo"
+						}
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"schema": {
+							"$ref": "#/definitions/Exame"
+						}
+					}
+				}
+			}
+		},
+		"/exame/delete/{nome}":
+		{
+			"delete": {
+				"tags": ["Exame"],
+				"summary": "Remover exame",
+				"parameters": [{
+					"name": "nome",
+					"in": "path",
+					"description": "Nome do exame",
+					"required": true,
+					"schema":{
+						"$ref": "#/definitions/Nome"
+					}
+				}],
+				"responses": {
+					"200": {
+						"description": "Ok"
+					}
+				}
+			}
+		},
+		"/lab/all": {
+			"get": {
+				"tags": ["Laboratório"],
+				"summary": "Todos os Laboratórios",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"schema": {
+							"$ref": "#/definitions/Laboratório"
+						}
+					}
+				}
+			}
+		},
+		"/lab/add": {
+			"post": {
+				"tags": ["Laboratório"],
+				"summary": "Adicionar Laboratório",
+				"parameters": [
+					{
+						"name": "nome",
+						"in": "body",
+						"required": true,
+						"schema": {
+							"$ref": "#/definitions/Nome"
+						}
+					},
+					{
+						"name": "endereco",
+						"in": "body",
+						"required": true,
+						"schema": {
+							"$ref": "#/definitions/Endereco"
+						}
+					}
+				],
+				"response": {
+					"200": "Ok",
+					"schema": {
+						"$ref": "#/definitions/Laboratório"
+					}
+				}
+			}
+		},
+		"/lab/add/{nome}/exames": {
+			"post": {
+				"tags": ["Laboratório"],
+				"summary": "Indexar exames existentes a um laboratório",
+				"parameters": [
+					{
+						"name": "nome",
+						"in": "path",
+						"required": true,
+						"schema": {
+							"$ref": "#/definitions/Nome"
+						}
+					},
+					{
+						"name": "exame",
+						"in": "body",
+						"required": true,
+						"schema": {
+							"$ref": "#/definitions/IndexarExame"
+						}
+					}
+				]
+			}
+		},
+		"/lab/edit/{nome}/{status}": {
+			"patch": {
+				"tags": ["Laboratório"],
+				"summary": "Edtiar um laboratório",
+				"parameters": [
+					{
+						"name": "nome",
+						"in": "path",
+						"required": true,
+						"schema": {
+							"$ref": "#/definitions/Nome"
+						}
+					},
+					{
+						"name": "status",
+						"in": "path",
+						"required": true,
+						"schema": {
+							"$ref": "#/definitions/Status"
+						}
+					},
+					{
+						"name": "nome",
+						"in": "body",
+						"required": true,
+						"schema": {
+							"$ref": "#/definitions/Nome"
+						}
+					},
+					{
+						"name": "endereco",
+						"in": "body",
+						"required": true,
+						"schema": {
+							"$ref": "#/definitions/Endereco"
+						}
+					}
+				]
+			}
+		},
+		"/lab/delete/{nome}": {
+			"delete": {
+				"tags": ["Laboratório"],
+				"summary": "Deletar um laboratório",
+				"parameters": [{
+					"name": "nome",
+					"in": "path",
+					"required": true,
+					"schema": {
+						"$ref": "#/definitions/Nome"
+					}
+				}]
+			}
+		}
+	},
+	"definitions":
+	{
+		"Exame":
+		{
+			"type": "Object",
+			"properties":
+			{
+				"id": { "type": "number" },
+				"nome": { "type": "string" },
+				"tipo": { "type": "string" },
+				"status": { "type": "string "}
+			}
+		},
+		"Laboratório":
+		{
+			"type": "Object",
+			"properties":
+			{
+				"id": { "type": "number" },
+				"nome": {" type": "string "},
+				"endereço": { "type": "string" },
+				"status": {" type": "string" },
+				"exames": {" type": "array" }
+			}
+		},
+		"Nome": { "type": "string" },
+		"Endereco": { "type": "string" },
+		"Tipo": { "type": "string" },
+		"Status": { "type": "int" },
+		"IndexarExame": { "type": "array" }
+	}
+}

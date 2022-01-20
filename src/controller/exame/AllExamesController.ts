@@ -8,7 +8,7 @@ export class AllExamesController
 	{
 		const allExamesService: AllExamesService = new AllExamesService();
 
-		const result: Array<Object> = await allExamesService.execute();
+		const result: Array<any> = await allExamesService.execute();
 
 		return res.json( result );
 	};
