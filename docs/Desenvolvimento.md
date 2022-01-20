@@ -16,7 +16,9 @@ docker-compose up
 # depois aguardará alterações nós arquivos.
 ```
 
-Pronto, agora é só codar que ele reiniciará a aplicação com as alterações.
+Pronto, agora é só acessar a rota:
+	http://localhost:8080/docs
+para acessar a documentação da API online
 
 ### Typescript
 
