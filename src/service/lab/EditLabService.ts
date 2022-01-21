@@ -18,7 +18,7 @@ export class EditLabService
 		{
 			newData.nome && ( oldLab.nome = newData.nome );
 			newData.endereco && ( oldLab.endereco = newData.endereco );
-			oldLab.status = ( Number(status) === 0 ) ? "Ativo" : "Inativo"
+			oldLab.status = ( Number(status) === 1 ) ? "Ativo" : "Inativo"
 		}
 		else return "Laboratório não encontrado!";
 

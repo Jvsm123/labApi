@@ -12,13 +12,6 @@
 	},
 	"host": "localhost:8080",
 	"basePath": "",
-	"tags":
-	[
-		{
-			"nome": "API LAB",
-			"description": "API Para Busca De Exames / Laboratórios"
-		}
-	],
 	"schemes": ["http"],
 	"consumes": ["application/json"],
 	"produces": ["application/json"],
@@ -31,9 +24,9 @@
 				"summary": "Todos os exames",
 				"responses": {
 					"200": {
-						"description": "Ok",
+						"description": "Todos os exames cadastrados",
 						"schema": {
-							"$ref": "#/definitions/Exame"
+							"$ref": "#/definitions/returnExame"
 						}
 					}
 				}
@@ -54,7 +47,10 @@
 				}],
 				"responses": {
 					"200": {
-						"description": "Ok"
+						"description": "Todos os exames criados e indexados em laboratórios",
+						"schema": {
+							"$ref": "#/definitions/returnRelatedExame"
+						}
 					}
 				}
 			}
@@ -65,27 +61,21 @@
 				"summary": "Adicionar novo Exame",
 				"parameters": [
 					{
-						"name": "nome",
+						"name": "Exame",
 						"in": "body",
-						"description": "Nome do exame",
+						"description": "Novo exame",
 						"required": true,
 						"schema": {
-							"$ref": "#/definitions/Nome"
-						}
-					},
-					{
-						"name": "tipo",
-						"in": "body",
-						"description": "Tipo do exame",
-						"required": true,
-						"schema": {
-							"$ref": "#/definitions/Tipo"
+							"$ref": "#/definitions/novoExame"
 						}
 					}
 				],
 				"responses": {
 					"200": {
-						"description": "Ok"
+						"description": "Exame Criado",
+						"schema": {
+							"$ref": "#/definitions/returnExame"
+						}
 					}
 				}
 			}
@@ -100,43 +90,32 @@
 						"in": "path",
 						"description": "Nome do exame",
 						"required": true,
-						"schema":{
-							"$ref": "#/definitions/Nome"
-						}
+						"type": "string",
+						"format": "string"
 					},
 					{
 						"name": "status",
 						"in": "path",
 						"description": "status do exame",
 						"required": true,
-						"schema":{
-							"$ref": "#/definitions/Status"
-						}
+						"type": "int",
+						"format": "int32"
 					},
 					{
-						"name": "nome",
+						"name": "exame",
 						"in": "body",
-						"description": "Nome do novo exame",
+						"description": "Novo exame",
 						"required": true,
 						"schema": {
-							"$ref": "#/definitions/Nome"
-						}
-					},
-					{
-						"name": "tipo",
-						"in": "body",
-						"description": "Tipo do novo exame",
-						"required": true,
-						"schema": {
-							"$ref": "#/definitions/Tipo"
+							"$ref": "#/definitions/novoExame"
 						}
 					}
 				],
 				"responses": {
 					"200": {
-						"description": "Ok",
+						"description": "Exame editado",
 						"schema": {
-							"$ref": "#/definitions/Exame"
+							"$ref": "#/definitions/returnExame"
 						}
 					}
 				}
@@ -152,13 +131,12 @@
 					"in": "path",
 					"description": "Nome do exame",
 					"required": true,
-					"schema":{
-						"$ref": "#/definitions/Nome"
-					}
+					"type": "string",
+					"format": "string"
 				}],
 				"responses": {
 					"200": {
-						"description": "Ok"
+						"description": "Exame removido"
 					}
 				}
 			}
@@ -169,9 +147,9 @@
 				"summary": "Todos os Laboratórios",
 				"responses": {
 					"200": {
-						"description": "Ok",
+						"description": "Todos os laboratório",
 						"schema": {
-							"$ref": "#/definitions/Laboratório"
+							"$ref": "#/definitions/returnLaboratorio"
 						}
 					}
 				}
@@ -183,26 +161,20 @@
 				"summary": "Adicionar Laboratório",
 				"parameters": [
 					{
-						"name": "nome",
+						"name": "Laboratório",
 						"in": "body",
 						"required": true,
 						"schema": {
-							"$ref": "#/definitions/Nome"
-						}
-					},
-					{
-						"name": "endereco",
-						"in": "body",
-						"required": true,
-						"schema": {
-							"$ref": "#/definitions/Endereco"
+							"$ref": "#/definitions/newLaboratorio"
 						}
 					}
 				],
 				"response": {
-					"200": "Ok",
-					"schema": {
-						"$ref": "#/definitions/Laboratório"
+					"200": {
+						"description": "Laboratório criado",
+						"schema": {
+							"$ref": "#/definitions/returnLaboratorio"
+						}
 					}
 				}
 			}
@@ -216,9 +188,8 @@
 						"name": "nome",
 						"in": "path",
 						"required": true,
-						"schema": {
-							"$ref": "#/definitions/Nome"
-						}
+						"type": "string",
+						"format": "string"
 					},
 					{
 						"name": "exame",
@@ -228,7 +199,15 @@
 							"$ref": "#/definitions/IndexarExame"
 						}
 					}
-				]
+				],
+				"response": {
+					"200": {
+						"description": "Nova indexação",
+						"schema": {
+							"$ref": "#/definitions/returnLaboratorio"
+						}
+					}
+				}
 			}
 		},
 		"/lab/edit/{nome}/{status}": {
@@ -240,35 +219,33 @@
 						"name": "nome",
 						"in": "path",
 						"required": true,
-						"schema": {
-							"$ref": "#/definitions/Nome"
-						}
+						"type": "string",
+						"format": "string"
 					},
 					{
 						"name": "status",
 						"in": "path",
 						"required": true,
-						"schema": {
-							"$ref": "#/definitions/Status"
-						}
+						"type": "integer",
+						"format": "integer"
 					},
 					{
-						"name": "nome",
+						"name": "Laboratório novo",
 						"in": "body",
 						"required": true,
 						"schema": {
-							"$ref": "#/definitions/Nome"
-						}
-					},
-					{
-						"name": "endereco",
-						"in": "body",
-						"required": true,
-						"schema": {
-							"$ref": "#/definitions/Endereco"
+							"$ref": "#/definitions/newLaboratorio"
 						}
 					}
-				]
+				],
+				"response": {
+					"200": {
+						"description": "Laboratorio editado",
+						"schema": {
+							"$ref": "#/definitions/returnLaboratorio"
+						}
+					}
+				}
 			}
 		},
 		"/lab/delete/{nome}": {
@@ -279,42 +256,85 @@
 					"name": "nome",
 					"in": "path",
 					"required": true,
-					"schema": {
-						"$ref": "#/definitions/Nome"
+					"type": "string",
+					"format": "string"
+				}],
+				"response": {
+					"200":{ 
+						"description": "Laboratório removido"
 					}
-				}]
+				}
 			}
 		}
 	},
 	"definitions":
 	{
-		"Exame":
+		"novoExame":
 		{
-			"type": "Object",
+			"type": "object",
 			"properties":
 			{
-				"id": { "type": "number" },
+				"nome": { "type": "string" },
+				"tipo": { "type": "string" }
+			}
+		},
+		"returnExame": 
+		{
+			"type": "object",
+			"properties":
+			{
+				"id": { "type": "integer" },
 				"nome": { "type": "string" },
 				"tipo": { "type": "string" },
-				"status": { "type": "string "}
+				"status": { "type": "string" }
 			}
 		},
-		"Laboratório":
+		"returnRelatedExame":
 		{
-			"type": "Object",
+			"type": "object",
 			"properties":
 			{
-				"id": { "type": "number" },
-				"nome": {" type": "string "},
-				"endereço": { "type": "string" },
-				"status": {" type": "string" },
-				"exames": {" type": "array" }
+				"id": { "type": "integer" },
+				"nome": { "type": "string" },
+				"tipo": { "type": "string" },
+				"status": { "type": "string" },
+				"labs": { "type": "array", "items": { "$ref": "#/definitions/returnLaboratorio" } }
 			}
 		},
-		"Nome": { "type": "string" },
-		"Endereco": { "type": "string" },
-		"Tipo": { "type": "string" },
-		"Status": { "type": "int" },
-		"IndexarExame": { "type": "array" }
+		"newLaboratorio":
+		{
+			"type": "object",
+			"properties":
+			{
+				"nome": {" type": "string "},
+				"endereco": { "type": "string" }
+			}
+		},
+		"returnLaboratorio":
+		{
+			"type": "object",
+			"properties":
+			{
+				"nome": { "type": "string" },
+				"endereco": { "type": "string" },
+				"status": { "type": "string" },
+				"exames": { "type": "array", "items": { "$ref": "#/definitions/returnExame" } }
+			}
+		},
+		"IndexarExame":
+		{
+			"type": "array",
+			"description": "Nome do exame"
+		},
+		"Status":
+		{
+			"type": "integer",
+			"description": "número 0 = inativo, 1 = ativo"
+		},
+		"Nome":
+		{
+			"type": "string",
+			"description": "Nome da entitade (Exame ou Laboratório)"
+		}
 	}
 }

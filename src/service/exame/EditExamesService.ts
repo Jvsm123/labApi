@@ -18,7 +18,7 @@ export class EditExamesService
 		{
 			newData.nome && ( oldExame.nome = newData.nome );
 			newData.tipo && ( oldExame.tipo = newData.tipo );
-			oldExame.status = ( Number(status) === 0 ) ? "Ativo" : "Inativo";
+			oldExame.status = ( Number(status) === 1 ) ? "Ativo" : "Inativo";
 		}
 		else return "Exame não econtrado!";
 

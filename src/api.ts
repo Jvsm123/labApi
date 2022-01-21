@@ -4,7 +4,7 @@ dotenv.config();
 
 process.env.TYPEORM_URL = process.env['DATABASE_URL'];
 
-// import * as SwaggerDoc from './swagger.json';
+import * as SwaggerDoc from './swagger.json';
 
 import swaggerUI from 'swagger-ui-express';
 
@@ -32,7 +32,7 @@ const api = Express();
 	api.use( 
 		"/docs",
 		swaggerUI.serve,
-		swaggerUI.setup( /*SwaggerDoc*/
+		swaggerUI.setup( SwaggerDoc,
 		{
 			explorer: true,
 			swaggerOptions:
