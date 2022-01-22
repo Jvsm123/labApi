@@ -34,7 +34,7 @@ Veja o arquivo ./env.development na raiz do projeto
    * routes: endpoint com as routes do enpoint especificas do modulo.
    * services: camada responsável pela lógica de nogocio.
    * @types: arquivos usados para guiar o Typescript quando uma tipagem não é encontrada.
-   * utils: Recursos que são resuados.
+   * utils: Recursos que são reusados.
    * api.ts: Arquivo que guarda as configuarções e recursos que todo servidor irá usar.
    * swagger.json: Arquivo de configurações usado pela documentação da API on-line.
 
